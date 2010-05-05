@@ -146,3 +146,19 @@ task :upload => :rdoc do
   pub = Rake::SshDirPublisher.new user, project, local_dir
   pub.upload
 end
+
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |gemspec|
+    gemspec.name = PKG_NAME
+    gemspec.version = PKG_VERSION
+    gemspec.summary = "Ruby client for the eBay unified schema XML API"
+    gemspec.email = "codyfauser@gmail.com"
+    gemspec.homepage = "http://ebayapi.rubyforge.org"
+    gemspec.authors = ["Cody Fauser"]
+    gemspec.add_dependency('xml-mapping', '>= 0.8.1')
+    gemspec.add_dependency('money', '>= 1.7.1')
+  end
+rescue LoadError
+  puts "Jeweler not available. Install it with: gem install jeweler"
+end
